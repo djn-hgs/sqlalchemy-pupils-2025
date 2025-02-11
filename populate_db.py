@@ -16,7 +16,8 @@ with orm.Session(engine) as session:
     session.add(pupil1)
     session.add(pupil2)
 
-    print(pupil1.house.name)
+    print(pupil1.house)
     print(queensgate.pupils)
+
 
     session.commit()
