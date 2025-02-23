@@ -13,3 +13,5 @@ Relationships are a bit spooky now, but seem to work well with the `Mapped` appr
 - `default` and `default_factory` need to be declared
 - when the relationship column is `Mapped[List[Class]]` then `default_factory=list` is usually useful
 - I need to use `back_populates` and get out of the old-school habit of using the non-symmetric `backref` which doesn't work in this setup
+
+I've written comments throughout the code which should be helpful.
