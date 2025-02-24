@@ -28,7 +28,7 @@ class Pupil(Base):
         # the output of `Pupil.__repr__`
     )
     first_name: orm.Mapped[str] = orm.mapped_column()
-    # Notice the way that `orm.DeclaritiveBase` maps the
+    # Notice the way that `orm.DeclarativeBase` maps the
     # `str` type to the right kind of sqlite field
     # And `orm.MappedAsDataclass` manages the attributes
     # and `Pupil.__repr__` output for us.
@@ -55,7 +55,7 @@ class Pupil(Base):
         # Tells `sqlalchemy` what the corresponding field is
         # in the `House` class
 
-        repr=False
+        repr=True
     )
 
     subjects: orm.Mapped[list['Subject']] = orm.relationship(
