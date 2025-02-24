@@ -28,12 +28,14 @@ class Pupil(Base):
         # the output of `Pupil.__repr__`
     )
     first_name: orm.Mapped[str] = orm.mapped_column()
+
     # Notice the way that `orm.DeclarativeBase` maps the
     # `str` type to the right kind of sqlite field
     # And `orm.MappedAsDataclass` manages the attributes
     # and `Pupil.__repr__` output for us.
 
     last_name: orm.Mapped[str] = orm.mapped_column()
+
     house_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey('house.house_id'),
         # This is how we declare a foreign key
@@ -55,7 +57,7 @@ class Pupil(Base):
         # Tells `sqlalchemy` what the corresponding field is
         # in the `House` class
 
-        repr=True
+        repr=False
     )
 
     subjects: orm.Mapped[list['Subject']] = orm.relationship(

@@ -33,6 +33,8 @@ with (orm.Session(engine) as session):
     pupil_cs = model.Pupil(first_name="Charlie", last_name="Suss", house=qq)
     pupil_lw = model.Pupil(first_name="Lindy", last_name="Wang", house=qq)
 
+    print(pupil_aa)
+
     # Now assign some subjects to the pupils
 
     pupil_aa.subjects.append(sub_m)
