@@ -20,7 +20,9 @@ with (orm.Session(engine) as session):
 
     print('\nGet the ORM object for maths\n')
 
-    maths = session.query(model.Subject).where(model.Subject.name == "Mathematics").one()
+    maths = session \
+        .query(model.Subject) \
+        .where(model.Subject.name == "Mathematics").one()
 
     print(maths)
 
