@@ -26,7 +26,10 @@ with (orm.Session(engine) as session):
     #     .query(model.Subject) \
     #     .where(model.Subject.name == "Mathematics").one()
 
-    qry = sqlalchemy.select(model.Subject).where(model.Subject.name == "Mathematics")
+    qry = (sqlalchemy
+           .select(model.Subject)
+           .where(model.Subject.name == "Mathematics")
+           )
     maths = session.scalar(qry)
 
     print(maths)
@@ -41,7 +44,10 @@ with (orm.Session(engine) as session):
 
     # house_qg = session.query(model.House).where(model.House.name == "Queensgate").one()
 
-    query = sqlalchemy.select(model.House).where(model.House.name == "Queensgate")
+    query = (sqlalchemy
+             .select(model.House)
+             .where(model.House.name == "Queensgate")
+             )
     house_qg = session.scalar(query)
 
     print(house_qg)
