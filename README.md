@@ -7,6 +7,7 @@ So `sqlalchemy.orm.Mapped` is now a very effective way to declare the python typ
 And if, like me, you were struggling to deal with the use of `@dataclass` headers because it wasn't clear how to include/exclude defaults from the `__init__` method or exclude attributes from the `__repr__` method then that is also now solved:
 - we should be deriving `Base` from `sqlalchemy.orm.MappedAsDataclass` (or something like that) rather than using the decorator (though there is an orm equivalent available per class)
 - we can include an `init` and `default` keyword in the field descriptor, so `init=False` and `default=None` will not expect an attribute and set a default value 
+- leaving `init` undefined makes it `True` and then a `default=None` allows us to have an optional attribute (or any other default value)
 - we can include `repr=False` in our field descriptions to stop them being printed
 
 Relationships are a bit spooky now, but seem to work well with the `Mapped` approach. See my code, but here were a couple of points that I need not to forget:

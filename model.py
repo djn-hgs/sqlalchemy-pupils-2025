@@ -1,5 +1,8 @@
+from typing import Optional
+
 import sqlalchemy
 import sqlalchemy.orm as orm
+
 
 # `orm.DeclarativeBase` does all the magic for us
 # `orm.MappedAsDataclass` enables us to use class
@@ -23,12 +26,13 @@ class Pupil(Base):
     last_name: orm.Mapped[str] = orm.mapped_column()
     house_id: orm.Mapped[int] = orm.mapped_column(
         sqlalchemy.ForeignKey('house.house_id'),
-        init=False,
-        repr=False
+        repr=False,
+        init=False
     )
 
+
     house: orm.Mapped['House'] = orm.relationship(
-        default=None,
+        default=None,   # This is enough to make the attribute optional
         back_populates="pupils",
         repr=True
     )
@@ -78,5 +82,11 @@ class Subject(Base):
 
 class PupilSubject(Base):
     __tablename__ = "pupil_subject"
-    pupil_id: orm.Mapped[int] = orm.mapped_column(sqlalchemy.ForeignKey('pupil.pupil_id'), primary_key=True)
-    subject_id: orm.Mapped[int] = orm.mapped_column(sqlalchemy.ForeignKey('subject.subject_id'), primary_key=True)
+    pupil_id: orm.Mapped[int] = orm.mapped_column(
+        sqlalchemy.ForeignKey('pupil.pupil_id'),
+        primary_key=True
+    )
+    subject_id: orm.Mapped[int] = orm.mapped_column(
+        sqlalchemy.ForeignKey('subject.subject_id'),
+        primary_key=True
+    )
