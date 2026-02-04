@@ -1,6 +1,6 @@
 import sqlalchemy
 import sqlalchemy.orm as orm
-import model as m
+from old_examples import model as m
 
 engine = sqlalchemy.create_engine("sqlite+pysqlite:///pupils.sqlite", echo=False)
 
