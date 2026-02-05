@@ -28,7 +28,7 @@ with orm.Session(engine) as session:
         session.add(hme)
         session.add(dj)
 
-        dj.house = eg
+        hme.house = eg
 
         print(hme)
         print(dj)
