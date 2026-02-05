@@ -23,6 +23,7 @@ class Pupil(Base):
     house: orm.Mapped['House'] = orm.relationship(
         back_populates='pupils',
         init=False,
+        default=None,
     )
 
 class House(Base):

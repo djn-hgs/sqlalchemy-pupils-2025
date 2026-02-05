@@ -15,18 +15,22 @@ with orm.Session(engine) as session:
 
         session.add(eg)
 
-        hwe = m.Pupil(
-            first_name='Henry',
-            second_name='Miller Evans',
-            date_of_birth=datetime.date(1999, 12, 31),
+    with session.begin():
+        hme = m.Pupil(
+        first_name='Henry',
+        second_name='Miller Evans',
+        date_of_birth=datetime.date(1999, 12, 31),
         )
 
-        dj = m.Pupil(
-            first_name='Dean',
-            second_name='Jones',
-            date_of_birth=datetime.date(1999, 12, 31),
-        )
+        session.add(hme)
 
-        session.add(hwe)
-        session.add(dj)
+        #
+        # dj = m.Pupil(
+        #     first_name='Dean',
+        #     second_name='Jones',
+        #     date_of_birth=datetime.date(1999, 12, 31),
+        # )
+
+        # session.add(hwe)
+        # session.add(dj)
 
