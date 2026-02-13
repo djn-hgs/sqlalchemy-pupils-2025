@@ -26,34 +26,35 @@ Playlist = Base.classes.playlists
 # 3) Query with ORM
 with Session(engine) as session:
     # Example A: First 5 artists
-    artists = session.execute(select(Artist).limit(5)).scalars().all()
+    artists = session.execute(select(Artist)).scalars().all()
+    artists = sorted(artists, key=lambda a: a.Name)
     for a in artists:
         print(a.ArtistId, a.Name)
 
-    # Example B: Albums by a specific artist
-    albums = (
-        session.query(Album)
-        .join(Artist, Album.ArtistId == Artist.ArtistId)
-        .filter(Artist.Name == "AC/DC")
-        .all()
-    )
-    print([al.Title for al in albums])
-
-    # Example C: Top 10 tracks by unit price (descending)
-    top_tracks = (
-        session.query(Track.Name, Track.UnitPrice)
-        .order_by(Track.UnitPrice.desc())
-        .limit(10)
-        .all()
-    )
-    print(top_tracks)
-
-    # Example D: Revenue by country
-    rev_by_country = (
-        session.query(Invoice.BillingCountry, func.sum(Invoice.Total).label("Revenue"))
-        .group_by(Invoice.BillingCountry)
-        .order_by(func.sum(Invoice.Total).desc())
-        .all()
-    )
-    for country, rev in rev_by_country:
-        print(country, rev)
+    # # Example B: Albums by a specific artist
+    # albums = (
+    #     session.query(Album)
+    #     .join(Artist, Album.ArtistId == Artist.ArtistId)
+    #     .filter(Artist.Name == "AC/DC")
+    #     .all()
+    # )
+    # print([al.Title for al in albums])
+    #
+    # # Example C: Top 10 tracks by unit price (descending)
+    # top_tracks = (
+    #     session.query(Track.Name, Track.UnitPrice)
+    #     .order_by(Track.UnitPrice.desc())
+    #     .limit(10)
+    #     .all()
+    # )
+    # print(top_tracks)
+    #
+    # # Example D: Revenue by country
+    # rev_by_country = (
+    #     session.query(Invoice.BillingCountry, func.sum(Invoice.Total).label("Revenue"))
+    #     .group_by(Invoice.BillingCountry)
+    #     .order_by(func.sum(Invoice.Total).desc())
+    #     .all()
+    # )
+    # for country, rev in rev_by_country:
+    #     print(country, rev)
